@@ -12,6 +12,7 @@ DBT_ROOT_PATH = '/opt/airflow/dags/include/jaffle_shop'
 dag = DAG(
     'dbt_custom_dag',
     default_args=default_args,
+    tags=['dbt', 'custom'],
     schedule='0 0 * * *',  # Run daily at midnight
 )
 task1 = BashOperator(

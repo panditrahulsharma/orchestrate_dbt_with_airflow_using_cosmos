@@ -1,0 +1,34 @@
+# Data Contract Configuration for Dynamic Cosmos DAG Generation
+# Each root key becomes a DAG ID, with the associated configuration
+
+product_reporting:
+  description: This is the data contract for the product_reporting dataset, which contains all the tables related to product reporting.
+  owner: data_team
+  tags: ['reporting', 'product', 'backfill']
+  clusters: ['r5_cluster']
+  schedule: '0 2 * * *'  # Run daily at 2 AM
+  models:
+    - name: customers
+    - name: orders
+    - name: products
+
+pcl_runs:
+  description: This is the data contract for the pcl_runs dataset, which contains all the tables related to pcl runs.
+  owner: data_team
+  tags: ['pcl', 'runs', 'backfill']
+  clusters: ['r5_large_cluster']
+  schedule: '0 3 * * *'  # Run daily at 3 AM
+  models:
+    - name: pcl_run_summary
+    - name: pcl_run_details
+
+staging_layer:
+  description: This data contract covers all staging models (stg_* models).
+  owner: data_team
+  tags: ['staging', 'upstream', 'backfill']
+  clusters: ['r5_cluster']
+  schedule: '0 1 * * *'  # Run daily at 1 AM
+  models:
+    - name: stg_customers
+    - name: stg_orders
+    - name: stg_payments
